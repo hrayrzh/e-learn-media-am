@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Քանդենք-գործենք հանգույցը</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #fff9f0;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            color: #f37123;
+            transform: translateX(-8px);
+        }
+
+        .decorative-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .circle-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(39, 171, 226, 0.1), transparent);
+            border-radius: 50%;
+            top: 5%;
+            right: 10%;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(243, 113, 35, 0.1), transparent);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 5%;
+            animation: float 10s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #f37123;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transform: rotate(-2deg);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            font-style: italic;
+        }
+
+        h1 span {
+            color: #27abe2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #555;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .quiz-container {
+            margin-bottom: 80px;
+        }
+
+        .question {
+            background: #ffffff;
+            padding: 50px;
+            margin-bottom: 40px;
+            transition: all 0.5s ease;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.08);
+            border-radius: 50px 20px 50px 20px;
+        }
+
+        .question:hover {
+            transform: rotate(-1deg);
+            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .question:nth-child(even) {
+            border-radius: 20px 50px 20px 50px;
+        }
+
+        .question:nth-child(even):hover {
+            transform: rotate(1deg);
+        }
+
+        .question-number {
+            font-size: 1rem;
+            color: #f37123;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .question-text {
+            font-size: 1.5rem;
+            color: #000000;
+            margin-bottom: 35px;
+            font-weight: 600;
+            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .option {
+            padding: 20px 30px;
+            background: #f8f8f8;
+            border: 3px solid transparent;
+            border-radius: 30px 10px 30px 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.15rem;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .option:hover {
+            background: #fff;
+            border-color: #27abe2;
+            transform: translateX(15px);
+            border-radius: 10px 30px 10px 30px;
+        }
+
+        .option.selected {
+            background: rgba(39, 171, 226, 0.1);
+            border-color: #27abe2;
+            transform: translateX(15px);
+            border-radius: 10px 30px 10px 30px;
+        }
+
+        .option.correct {
+            background: rgba(40, 167, 69, 0.15);
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: rgba(220, 53, 69, 0.15);
+            border-color: #dc3545;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(135deg, #27abe2, #f37123);
+            color: #ffffff;
+            border: none;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            margin-bottom: 40px;
+            border-radius: 50px 15px 50px 15px;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            box-shadow: 15px 15px 40px rgba(243, 113, 35, 0.3);
+            border-radius: 15px 50px 15px 50px;
+        }
+
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .result {
+            background: #ffffff;
+            padding: 60px;
+            text-align: center;
+            border-radius: 60px 20px 60px 20px;
+            display: none;
+            box-shadow: 15px 15px 50px rgba(0, 0, 0, 0.12);
+            position: relative;
+        }
+
+        .result::before {
+            content: '✦';
+            position: absolute;
+            top: -25px;
+            left: 60px;
+            font-size: 3.5rem;
+            color: #27abe2;
+        }
+
+        .result.show {
+            display: block;
+        }
+
+        .result h2 {
+            font-size: 2.8rem;
+            color: #27abe2;
+            margin-bottom: 25px;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .result p {
+            font-size: 1.4rem;
+            color: #555;
+            font-weight: 500;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            gap: 30px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 20px 45px;
+            background: #ffffff;
+            border: 3px solid #27abe2;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 50px 10px 50px 10px;
+            transition: all 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: #27abe2;
+            color: #ffffff;
+            transform: translateY(-5px);
+            border-radius: 10px 50px 10px 50px;
+            box-shadow: 10px 10px 30px rgba(39, 171, 226, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 100px 25px 60px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .question {
+                padding: 35px 30px;
+            }
+
+            .result {
+                padding: 40px 30px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-element circle-1"></div>
+    <div class="decorative-element circle-2"></div>
+
+    <a href="index.html" class="back-link">← Հետ</a>
+
+    <div class="container">
+        <header>
+            <div class="tag">Բաղադրիչ 4</div>
+            <h1>Քանդենք-գործենք<br><span>հանգույցը</span></h1>
+            <p class="subtitle">Ստուգիր քո գիտելիքները հանգույցի մասին</p>
+        </header>
+
+        <div class="quiz-container">
+            <div class="question" data-question="1">
+                <div class="question-number">Հարց 1</div>
+                <p class="question-text">Նշվածներից ո՞րն է սթորիթելինգի ամենահին տեսակը։</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q1" value="a" style="display:none;">
+                        <span>Ժայռապատկեր</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="b" style="display:none;">
+                        <span>Գիրք</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q1" value="c" style="display:none;">
+                        <span>Ինստագրամի սթորի</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question" data-question="2">
+                <div class="question-number">Հարց 2</div>
+                <p class="question-text">Նշվածներից որն է պատմություն։</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="radio" name="q2" value="a" style="display:none;">
+                        <span>Հայտարարություն հանրահավաքի մասին</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="b" style="display:none;">
+                        <span>Անելիքների ցանկ</span>
+                    </label>
+                    <label class="option">
+                        <input type="radio" name="q2" value="c" style="display:none;">
+                        <span>Տիկտոկյան տեսանյութ՝ նոր ծանության մասին</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question" data-question="3">
+                <div class="question-number">Հարց 3</div>
+                <p class="question-text">Ինչու՞ են մարդիկ պատմություններ պատմում։ (ընտրել բոլոր ճիշտ տարբերակները)</p>
+                <div class="options">
+                    <label class="option">
+                        <input type="checkbox" name="q3" value="a" style="display:none;">
+                        <span>Որ համախոհներ գտնեն։</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="q3" value="b" style="display:none;">
+                        <span>Որ ինչ-որ բան սովորեցնեն։</span>
+                    </label>
+                    <label class="option">
+                        <input type="checkbox" name="q3" value="c" style="display:none;">
+                        <span>Որ համոզեն։</span>
+                    </label>
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="checkQuiz()">Ստուգել պատասխանները</button>
+
+            <div class="result" id="result">
+                <h2 id="resultTitle"></h2>
+                <p id="resultText"></p>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="component3.html" class="nav-btn">← Նախորդ</a>
+            <a href="index.html" class="nav-btn">Գլխավոր</a>
+        </div>
+    </div>
+
+    <script>
+        const answers = {
+            q1: 'a',  // Ժայռապատկեր
+            q2: 'c',  // Տիկտոկյան տեսանյութ՝ նոր ծանության մասին
+            q3: ['a', 'b', 'c']  // Բոլոր տարբերակները
+        };
+
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const input = this.querySelector('input');
+                const name = input.name;
+
+                if (input.type === 'radio') {
+                    document.querySelectorAll(`input[name="${name}"]`).forEach(r => {
+                        r.parentElement.classList.remove('selected');
+                    });
+                    input.checked = true;
+                    this.classList.add('selected');
+                } else if (input.type === 'checkbox') {
+                    input.checked = !input.checked;
+                    this.classList.toggle('selected');
+                }
+            });
+        });
+
+        function checkQuiz() {
+            let score = 0;
+            const total = 3;
+
+            // Проверка q1
+            const q1Selected = document.querySelector(`input[name="q1"]:checked`);
+            const q1Options = document.querySelectorAll(`input[name="q1"]`);
+            q1Options.forEach(option => {
+                const label = option.parentElement;
+                label.classList.remove('selected');
+                if (option.value === answers.q1) {
+                    label.classList.add('correct');
+                } else if (option.checked) {
+                    label.classList.add('incorrect');
+                }
+            });
+            if (q1Selected && q1Selected.value === answers.q1) score++;
+
+            // Проверка q2
+            const q2Selected = document.querySelector(`input[name="q2"]:checked`);
+            const q2Options = document.querySelectorAll(`input[name="q2"]`);
+            q2Options.forEach(option => {
+                const label = option.parentElement;
+                label.classList.remove('selected');
+                if (option.value === answers.q2) {
+                    label.classList.add('correct');
+                } else if (option.checked) {
+                    label.classList.add('incorrect');
+                }
+            });
+            if (q2Selected && q2Selected.value === answers.q2) score++;
+
+            // Проверка q3 (множественный выбор)
+            const q3Selected = Array.from(document.querySelectorAll(`input[name="q3"]:checked`)).map(el => el.value);
+            const q3Options = document.querySelectorAll(`input[name="q3"]`);
+            q3Options.forEach(option => {
+                const label = option.parentElement;
+                label.classList.remove('selected');
+                if (answers.q3.includes(option.value)) {
+                    label.classList.add('correct');
+                    if (!option.checked) {
+                        // Правильный вариант не выбран - показываем как правильный
+                    }
+                } else if (option.checked) {
+                    label.classList.add('incorrect');
+                }
+            });
+
+            // Проверяем, все ли правильные ответы выбраны
+            const q3Correct = answers.q3.every(val => q3Selected.includes(val)) &&
+                             q3Selected.every(val => answers.q3.includes(val));
+            if (q3Correct) score++;
+
+            const result = document.getElementById('result');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+
+            resultTitle.textContent = `Դուք հավաքեցիք ${score}/${total} միավոր`;
+
+            if (score === 3) {
+                resultText.textContent = 'Շնորհավորում ենք! Դուք հոյակապ եք հասկանում սթորիթելինգի հիմունքները։';
+            } else if (score === 2) {
+                resultText.textContent = 'Լավ է! Դուք գիտեք հիմնական սկզբունքները։';
+            } else {
+                resultText.textContent = 'Կարդացեք նյութը ևս մեկ անգամ և փորձեք նորից։';
+            }
+
+            result.classList.add('show');
+
+            document.querySelector('.submit-btn').disabled = true;
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.style.cursor = 'default';
+                opt.onclick = null;
+            });
+        }
+    </script>
+</body>
+</html>

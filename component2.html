@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Պատմությունների կծիկը ժայռապատկերներից մինչև Տիկտոկ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #fff9f0;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            color: #f37123;
+            transform: translateX(-8px);
+        }
+
+        .decorative-shape {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(39, 171, 226, 0.08), transparent);
+            border-radius: 40% 60% 70% 30%;
+            top: 5%;
+            right: 5%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(243, 113, 35, 0.08), transparent);
+            border-radius: 60% 40% 30% 70%;
+            bottom: 10%;
+            left: 8%;
+            animation: float 8s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(5deg);
+            }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #f37123;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transform: rotate(-2deg);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            font-style: italic;
+        }
+
+        h1 span {
+            color: #27abe2;
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            color: #555;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 2;
+        }
+
+        .video-container {
+            position: relative;
+            width: 95%;
+            margin: 0 auto 90px;
+            padding-bottom: 53.44%;
+            background: #000;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow:
+                20px 20px 60px rgba(0, 0, 0, 0.15),
+                -20px -20px 60px rgba(255, 255, 255, 0.7);
+            transform: rotate(-1deg);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .timeline {
+            margin: 100px 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            margin-bottom: 70px;
+            align-items: center;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            grid-template-columns: 1fr 280px;
+            direction: rtl;
+        }
+
+        .timeline-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e3f5ff, #ffe8d6);
+            border-radius: 50% 20% 50% 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .timeline-item:hover .timeline-image {
+            border-radius: 20% 50% 20% 50%;
+            transform: scale(1.05);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.6rem;
+            color: #27abe2;
+            margin-bottom: 15px;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content h3 {
+            color: #f37123;
+        }
+
+        .timeline-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.9;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            gap: 30px;
+        }
+
+        .nav-btn {
+            padding: 20px 45px;
+            background: #ffffff;
+            border: 3px solid #27abe2;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px 10px 50px 10px;
+            transition: all 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: #27abe2;
+            color: #ffffff;
+            transform: translateY(-5px);
+            border-radius: 10px 50px 10px 50px;
+            box-shadow: 10px 10px 30px rgba(39, 171, 226, 0.3);
+        }
+
+        .nav-btn.next {
+            border-color: #f37123;
+            color: #f37123;
+        }
+
+        .nav-btn.next:hover {
+            background: #f37123;
+            color: #ffffff;
+            box-shadow: 10px 10px 30px rgba(243, 113, 35, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 100px 25px 60px;
+            }
+
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                direction: ltr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-shape shape-1"></div>
+    <div class="decorative-shape shape-2"></div>
+
+    <a href="index.html" class="back-link">← Հետ</a>
+
+    <div class="container">
+        <header>
+            <div class="tag">Բաղադրիչ 2</div>
+            <h1>Պատմությունների կծիկը<br><span>ժայռապատկերներից մինչև Տիկտոկ</span></h1>
+            <p class="intro-text">
+                Մարդիկ պատմում էին իրենց օրվա մասին ժայռապատկերներով 10,000 տարի առաջ, իսկ ամենահին սեպագրերը մեր թվարկությունից առաջ 4րդ հազարամյակից են։ Պատմությունները մեզ են հասել նաև բանավոր, իսկ գրավոր պատմությունը դարձավ մասսայական 15-րդ դարում տպագրության գյուտի միջոցով։ 20րդ դարում ձայնն ու կադրը պատմությունները կենդանացրին, իսկ այսօր արդեն՝ համացանցի դարում, բոլորս ենք պատմություններ պատմում՝ ցանկացած տեղից, ցանկացած ժամանակ։
+            </p>
+        </header>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>10,000 տարի առաջ</h3>
+                    <p>Ժայռապատկեր՝ մարդն այսպես էր պատմում իր օրվա մասին</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>Մ․Թ․Ա․ 4րդ հազարամյակ</h3>
+                    <p>Ամենահին սեպագրերը</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>Դարեր շարունակ</h3>
+                    <p>Տատիկներն ու պապիկները լեգենդներ ու հեքիաթներ են պատմել ու պատմությունը բանավոր փոխանցել սերնդեսերունդ</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>1-ին դար</h3>
+                    <p>Առաջին գրավոր տեղեկատուն կազմում էին հռոմեացիները</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>15-րդ դար</h3>
+                    <p>Տպագրության գյուտով պատմությունները սկսեցին հասնել հազարավոր մարդկանց</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>20-րդ դար</h3>
+                    <p>Ձայնն ու կադրը պատմությունները կենդանացրին</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-image">image-default.png</div>
+                <div class="timeline-content">
+                    <h3>Համացանցի դար</h3>
+                    <p>Համացանցի ստեղծումից հետո, բոլորս ենք պատմություն պատմում, ցանկացած տեղից ու ցանկացած ժամանակ։</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="component1.html" class="nav-btn">← Նախորդ</a>
+            <a href="component3.html" class="nav-btn next">Հաջորդ →</a>
+        </div>
+    </div>
+</body>
+</html>

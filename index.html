@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Հանգույց 1․ ինչու ենք հյուսում պատմություններ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fff9f0;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 100px;
+            position: relative;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #f37123, transparent);
+            opacity: 0.3;
+            border-radius: 50%;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.5;
+            }
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 40px;
+            font-style: italic;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 20%;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #27abe2, #f37123);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #333;
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .component-card {
+            background: #ffffff;
+            padding: 50px 40px;
+            text-align: left;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #27abe2, #f37123);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            border-radius: 30px;
+        }
+
+        .component-card:hover::before {
+            opacity: 1;
+        }
+
+        .component-card:hover {
+            transform: rotate(-2deg) scale(1.02);
+        }
+
+        .component-card:nth-child(even) {
+            margin-top: 50px;
+        }
+
+        .component-card:nth-child(even):hover {
+            transform: rotate(2deg) scale(1.02);
+        }
+
+        .component-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #27abe2;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .component-card:nth-child(even) .component-number {
+            color: #f37123;
+        }
+
+        .component-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .component-desc {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .decorative-circle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(39, 171, 226, 0.1), transparent);
+            top: 10%;
+            right: 5%;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(243, 113, 35, 0.1), transparent);
+            bottom: 15%;
+            left: 10%;
+        }
+
+        @media (max-width: 968px) {
+            .components-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .component-card:nth-child(even) {
+                margin-top: 0;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-circle circle-1"></div>
+    <div class="decorative-circle circle-2"></div>
+
+    <div class="container">
+        <header>
+            <h1>Հանգույց 1</h1>
+            <p class="subtitle">
+                Այս հանգույցը հյուսելիս դու կբացահայտես, թե ինչ է պատմությունն ու ինչու ենք մենք պատմություններ պատմում։ Ու կսկսես բացել սթորիթելինգի կծիկը։
+            </p>
+        </header>
+
+        <div class="components-grid">
+            <a href="component1.html" style="text-decoration: none;">
+                <div class="component-card">
+                    <div class="component-number">01</div>
+                    <h2 class="component-title">Ե՞րբ ենք պատմում պատմություն</h2>
+                    <p class="component-desc">Բացահայտիր պատմությունների ուժը և դրանց դերը մեր կյանքում</p>
+                </div>
+            </a>
+
+            <a href="component2.html" style="text-decoration: none;">
+                <div class="component-card">
+                    <div class="component-number">02</div>
+                    <h2 class="component-title">Պատմությունների կծիկը ժայռապատկերներից մինչև Տիկտոկ</h2>
+                    <p class="component-desc">Պատմությունների պատմումը՝ նախնադարից մինչև այսօր</p>
+                </div>
+            </a>
+
+            <a href="component3.html" style="text-decoration: none;">
+                <div class="component-card">
+                    <div class="component-number">03</div>
+                    <h2 class="component-title">Ինչ պատմություններ ենք հյուսում այսօր</h2>
+                    <p class="component-desc">Պատմությունների տեսակները և նրանց ազդեցությունը</p>
+                </div>
+            </a>
+
+            <a href="component4.html" style="text-decoration: none;">
+                <div class="component-card">
+                    <div class="component-number">04</div>
+                    <h2 class="component-title">Քանդենք-գործենք հանգույցը</h2>
+                    <p class="component-desc">Ստուգիր քո գիտելիքները քուիզի միջոցով</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

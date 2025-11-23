@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ինչ պատմություններ ենք հյուսում այսօր</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #fff9f0;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            color: #f37123;
+            transform: translateX(-8px);
+        }
+
+        .decorative-blob {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(39, 171, 226, 0.1), transparent);
+            border-radius: 40% 60% 70% 30%;
+            top: -150px;
+            right: -150px;
+            animation: blob-morph 12s infinite ease-in-out;
+        }
+
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(243, 113, 35, 0.1), transparent);
+            border-radius: 60% 40% 30% 70%;
+            bottom: -100px;
+            left: -100px;
+            animation: blob-morph 10s infinite ease-in-out reverse;
+        }
+
+        @keyframes blob-morph {
+            0%, 100% {
+                border-radius: 40% 60% 70% 30%;
+                transform: rotate(0deg);
+            }
+            50% {
+                border-radius: 60% 40% 30% 70%;
+                transform: rotate(10deg);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 80px;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #f37123;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transform: rotate(-2deg);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 30px;
+            line-height: 1.1;
+            font-style: italic;
+        }
+
+        h1::first-line {
+            color: #27abe2;
+        }
+
+        .intro-text {
+            font-size: 1.3rem;
+            color: #444;
+            line-height: 2.1;
+            margin-bottom: 60px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .content {
+            margin-bottom: 80px;
+        }
+
+        .content p {
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: #333;
+            margin-bottom: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .content p strong {
+            color: #27abe2;
+            font-weight: 700;
+        }
+
+        .content a {
+            color: #f37123;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        .content a:hover {
+            color: #27abe2;
+        }
+
+        .content p:nth-child(even) {
+            background: linear-gradient(to right, rgba(39, 171, 226, 0.05), transparent);
+            padding: 30px;
+            border-radius: 0 50px 50px 0;
+        }
+
+        .assignment-box {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 60px 20px 60px 20px;
+            margin: 80px 0;
+            position: relative;
+            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .assignment-box::before {
+            content: '✦';
+            position: absolute;
+            top: -25px;
+            left: 50px;
+            font-size: 3.5rem;
+            color: #f37123;
+        }
+
+        .assignment-box h3 {
+            font-size: 1.8rem;
+            color: #000;
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .assignment-box p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 2;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            gap: 30px;
+        }
+
+        .nav-btn {
+            padding: 20px 45px;
+            background: #ffffff;
+            border: 3px solid #27abe2;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px 10px 50px 10px;
+            transition: all 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: #27abe2;
+            color: #ffffff;
+            transform: translateY(-5px);
+            border-radius: 10px 50px 10px 50px;
+            box-shadow: 10px 10px 30px rgba(39, 171, 226, 0.3);
+        }
+
+        .nav-btn.next {
+            border-color: #f37123;
+            color: #f37123;
+        }
+
+        .nav-btn.next:hover {
+            background: #f37123;
+            color: #ffffff;
+            box-shadow: 10px 10px 30px rgba(243, 113, 35, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 100px 25px 60px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .assignment-box {
+                padding: 40px 30px;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-blob blob-1"></div>
+    <div class="decorative-blob blob-2"></div>
+
+    <a href="index.html" class="back-link">← Հետ</a>
+
+    <div class="container">
+        <header>
+            <div class="tag">Բաղադրիչ 3</div>
+            <h1>Ինչ պատմություններ<br>ենք հյուսում այսօր</h1>
+            <p class="intro-text">
+                Թվային դարում պատմությունները կարող են տարբեր ձև, նպատակ ու գործառույթ ունենալ։
+            </p>
+        </header>
+
+        <div class="content">
+            <p>
+                Պատմությունները կարող են լինել <strong>թերապևտիկ</strong>, օգնել հաղթահարել տրավման։ Օրինակ՝ <a href="https://daphnearmenia.com/2019/01/31/hasmikarm/" target="_blank">Daphne նախագիծը</a> պատմում է ընտանեկան բռնության միջով անցած կանանց պատմություններ․ կանայք կիսվում էին իրենց ցավոտ հիշողություններով, նոր իմաստ տալիս կյանքին և գտնում վերականգնվելու ուղիներ։ Այսպիսի պատմությունները նաև լսարանին են օգնում հաղթահարել տրավման և վերագտնել ներքին ուժը։
+            </p>
+
+            <p>
+                Իսկ #MeToo օնլայն արշավը, որ դարձավ սեռական բռնության դեմ պայքարի գլոբալ շարժումը, ծնվեց հոլիվուդյան դերասանուհիների անհատական պատմություններից։ Երբ նրանք համարձակվեցին բարձրաձայնել իրենց հետ պատահածը, ալիքը շատ արագ տարածվեց ու ցույց տվեց, որ <strong>պատմությունը կարող է դառնալ փոփոխության շարժիչ ուժ</strong>։
+            </p>
+
+            <p>
+                Պատմությունները օգնում են <strong>կոտրել կարծրատիպել, փոխել ընկալումներ</strong>։ Երբ «նորմալից» տարբերվող փորձ ունեցող մարդիկ բարձրաձայնում են իրենց կյանքի մասին, լսարանը սովորում է տեսնել աշխարհը նոր դիտանկյունից։ Օրինակ՝ Բրիտանացի Նիկի Լիլին-ն <a href="https://www.instagram.com/nikkililly_/" target="_blank">իր պատմություններով</a> Instagram-ում ցույց է տալիս, որ սահմանափակ հնարավորություններ ունեցող մարդը կարող է լինել ակտիվ, ստեղծագործ և ոգեշնչող։
+            </p>
+
+            <p>
+                Մեդիամաքսի «Հայտնիների 10 իրերը» <a href="https://mediamax.am/am/specialprojects/10_items/" target="_blank">մուլտիմեդիա նախագծում</a> պատմությունը պատմում են առարկաները, բայց դրանք հյուսում են օրինակ Ավետիք Իսահակյանի, Հովհաննես Թումանյանի, Մարտիրոս Սարյանի կերպարը, պատմում են նրանք կյանքի, ժամանակաշրջանի ու իրականության մասին, <strong>դառնում են մշակութային ժառանգություն</strong>։
+            </p>
+
+            <p>
+                Պատմությունը ամենալավ գործիքն է <strong>համոզելու համար</strong>։ Իզուր չի, որ լավագույն գովազդը հենց սթորիթելինգ է, որն ունի հերոս ու պատմություն, ինչպես օրինակ այս դասական <a href="https://www.domestika.org/en/blog/10988-10-powerful-examples-of-storytelling-in-advertising" target="_blank">գովազդային հոլովակներում</a>։ Եվ ամենահաջող քաղաքական արշավների հիմքում պատմություններն են, որոնք կառուցվում են հստակ սցենարական հնարքներով, ինչպես վերլուծում է Նյու Յորք Թայմզի «Ինչպես հաղթել» <a href="https://www.youtube.com/watch?v=tly8abRH4ws&t=153s" target="_blank">ֆիլմը</a>։
+            </p>
+        </div>
+
+        <div class="assignment-box">
+            <h3>Առաջադրանք</h3>
+            <p>
+                Սոցցանցային քո էջը մի քանի րոպե թերթելով առանձնացրու մի գրառում/տեսանյութ, որ քո կարծիքով պատմություն է, ու մտածիր, թե ինչ ուղերձ ունի այն։
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="component2.html" class="nav-btn">← Նախորդ</a>
+            <a href="component4.html" class="nav-btn next">Հաջորդ →</a>
+        </div>
+    </div>
+</body>
+</html>

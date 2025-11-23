@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ե՞րբ ենք պատմում պատմություն</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #fff9f0;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            color: #f37123;
+            transform: translateX(-8px);
+        }
+
+        .decorative-shape {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(39, 171, 226, 0.08), transparent);
+            border-radius: 40% 60% 70% 30%;
+            top: -100px;
+            right: -100px;
+            animation: morph 8s infinite alternate;
+        }
+
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(243, 113, 35, 0.08), transparent);
+            border-radius: 60% 40% 30% 70%;
+            bottom: 50px;
+            left: -50px;
+            animation: morph 10s infinite alternate-reverse;
+        }
+
+        @keyframes morph {
+            0%, 100% {
+                border-radius: 40% 60% 70% 30%;
+            }
+            50% {
+                border-radius: 60% 40% 30% 70%;
+            }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .tag {
+            display: inline-block;
+            color: #f37123;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            transform: rotate(-2deg);
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 400;
+            color: #000000;
+            margin-bottom: 35px;
+            line-height: 1.1;
+            font-style: italic;
+            position: relative;
+        }
+
+        h1::first-line {
+            color: #27abe2;
+        }
+
+        .intro-text {
+            font-size: 1.4rem;
+            color: #444;
+            line-height: 2;
+            margin-bottom: 60px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            border-left: 5px solid #f37123;
+            padding-left: 30px;
+        }
+
+        .video-container {
+            position: relative;
+            width: 95%;
+            margin: 0 auto 90px;
+            padding-bottom: 53.44%;
+            background: #000;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow:
+                20px 20px 60px rgba(0, 0, 0, 0.15),
+                -20px -20px 60px rgba(255, 255, 255, 0.7);
+            transform: rotate(-1deg);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .content-section p {
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: #333;
+            margin-bottom: 35px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .content-section p:nth-child(odd) {
+            background: linear-gradient(to right, rgba(39, 171, 226, 0.05), transparent);
+            padding: 30px;
+            border-radius: 0 50px 50px 0;
+        }
+
+        .examples-section {
+            margin: 80px 0;
+        }
+
+        .examples-section h3 {
+            font-size: 2rem;
+            color: #27abe2;
+            margin-bottom: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            text-align: center;
+        }
+
+        .example {
+            margin-bottom: 60px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 40px 20px 40px 20px;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.5s ease;
+        }
+
+        .example:hover {
+            transform: rotate(-1deg) scale(1.02);
+            box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .example h4 {
+            font-size: 1.4rem;
+            color: #f37123;
+            margin-bottom: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .example-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .example-item {
+            background: #f8f8f8;
+            padding: 25px;
+            border-radius: 20px;
+        }
+
+        .example-item .label {
+            font-size: 0.9rem;
+            color: #27abe2;
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .example-item .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            margin-bottom: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .example-item .caption {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-style: italic;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 100px;
+            gap: 30px;
+        }
+
+        .nav-btn {
+            padding: 20px 45px;
+            background: #ffffff;
+            border: 3px solid #27abe2;
+            color: #27abe2;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px 10px 50px 10px;
+            transition: all 0.5s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            background: #27abe2;
+            color: #ffffff;
+            transform: translateY(-5px);
+            border-radius: 10px 50px 10px 50px;
+            box-shadow: 10px 10px 30px rgba(39, 171, 226, 0.3);
+        }
+
+        .nav-btn.next {
+            border-color: #f37123;
+            color: #f37123;
+        }
+
+        .nav-btn.next:hover {
+            background: #f37123;
+            color: #ffffff;
+            box-shadow: 10px 10px 30px rgba(243, 113, 35, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .container {
+                padding: 100px 25px 60px;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .example-pair {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decorative-shape shape-1"></div>
+    <div class="decorative-shape shape-2"></div>
+
+    <a href="index.html" class="back-link">← Հետ</a>
+
+    <div class="container">
+        <header>
+            <div class="tag">Բաղադրիչ 1</div>
+            <h1>Ե՞րբ ենք պատմում<br>պատմություն</h1>
+            <p class="intro-text">
+                Հիշում ե՞ս վերջին սթորին, որ տարածել ես Ինստագրամում կամ Տիկտոկում։ Ուղղակի սիրուն նկա՞ր էր, թե՞ պատմություն, որ մտքիցդ դուրս չէր գալիս, որ ստիպել է ժպտալ, կամ հուզմունքից մի պահ շունչդ կտրվել է․․․
+            </p>
+        </header>
+
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="content-section">
+            <p>
+                Պատմությունները միայն գրքերում ու կինոյում չեն․ դրանք մի բաժակ սուրճի շուրջ զրույցներն են, դասամիջոցին կարճ խոսակցությունները, նամակներն ու զանգերը, սոցցանցերում արված գրառումները, որոնցով հաճախ ուզում ենք ասել՝ էլ ու՞մ հետ է նման բան պատահել, էլ ո՞վ է զգացել այն, ինչ ես, է՞լ ով գիտի, որ․․․
+            </p>
+            <p>
+                Պատմությունները մեզ կապող թելերն են։
+            </p>
+        </div>
+
+        <div class="examples-section">
+            <h3>Օրինակներում Նկար 1-ը ուղղակի նկար է, իսկ նկար 2-ը արդեն պատմություն է պատմում</h3>
+
+            <div class="example">
+                <h4>Օրինակ 1</h4>
+                <div class="example-pair">
+                    <div class="example-item">
+                        <div class="label">Նկար 1</div>
+                        <div class="image-placeholder">image-default.png</div>
+                        <p class="caption">Ինստագրամում տեղադրված նկար՝ մի մեծ ափսե տոլմա</p>
+                    </div>
+                    <div class="example-item">
+                        <div class="label">Նկար 2</div>
+                        <div class="image-placeholder">image-default.png</div>
+                        <p class="caption">
+                            Ինստագրամում տեղադրված նկար՝ մի մեծ ափսե տոլմա ու գրառում՝
+                            <em>"Աշխարհի ամենահամեղ տոլման, որ մայրիկս սովորել է տատիկիցս ու պատրաստում է ինձ համար ամեն անգամ, երբ կարևոր քննություն եմ հանձնում։"</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example">
+                <h4>Օրինակ 2</h4>
+                <div class="example-pair">
+                    <div class="example-item">
+                        <div class="label">Նկար 1</div>
+                        <div class="image-placeholder">image-default.png</div>
+                        <p class="caption">Ինստագրամում տեղադրված նկար՝ թրջված կոշիկներ</p>
+                    </div>
+                    <div class="example-item">
+                        <div class="label">Նկար 2</div>
+                        <div class="image-placeholder">image-default.png</div>
+                        <p class="caption">
+                            Ինստագրամում տեղադրված նկար՝ թրջված կոշիկներ ու գրառում՝
+                            <em>"Մեր քաղաքի խցանումները այնքան ահավոր են, որ ես ստիպված էի անձրևին ոտքով համալսարանից հասնել 2-րդ մասիվ։"</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <p>
+                Մենք պատմություններ ենք պատմում, երբ ուզում ենք, որ մեզ հասկանան, երբ փորձում ենք ինչ-որ բան համոզել, շատ լավ բան է լինում մեր կյանքում, կամ երբ ինչ-որ փորձության մեջ ենք հայտնվում, երբ խնդիր ենք տեսնում, որը լուծելու համար համախոհների կարիք ունենք, նույնիսկ երբ հենց ինքներս պատմությունը լսելու ու վերապրելու կարիք ունենք։
+            </p>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">← Գլխավոր</a>
+            <a href="component2.html" class="nav-btn next">Հաջորդ →</a>
+        </div>
+    </div>
+</body>
+</html>
