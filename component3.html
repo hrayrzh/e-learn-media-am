@@ -124,33 +124,142 @@
             margin-bottom: 80px;
         }
 
-        .content p {
-            font-size: 1.25rem;
-            line-height: 2.2;
+        .story-section {
+            margin-bottom: 90px;
+            position: relative;
+        }
+
+        .story-section h3 {
+            font-size: 3rem;
+            color: #27abe2;
+            margin-bottom: 30px;
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.2;
+            font-family: 'Georgia', serif;
+        }
+
+        .story-section:nth-child(2) h3 { color: #f37123; }
+        .story-section:nth-child(3) h3 { color: #27abe2; }
+        .story-section:nth-child(4) h3 { color: #f37123; }
+        .story-section:nth-child(5) h3 { color: #27abe2; }
+
+        .text-with-images {
+            position: relative;
+        }
+
+        .floating-image {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(39, 171, 226, 0.15), rgba(243, 113, 35, 0.15));
+            border-radius: 60% 40% 60% 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #999;
+            z-index: 0;
+            transition: all 0.4s ease;
+        }
+
+        .floating-image:hover {
+            transform: rotate(15deg);
+            border-radius: 40% 60% 40% 60%;
+        }
+
+        .story-section:nth-child(1) .floating-image {
+            top: -20px;
+            right: 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .story-section:nth-child(2) .floating-image {
+            top: 40px;
+            left: -30px;
+            width: 120px;
+            height: 120px;
+            animation: float 7s ease-in-out infinite reverse;
+        }
+
+        .story-section:nth-child(3) .floating-image {
+            bottom: -40px;
+            right: 30px;
+            width: 140px;
+            height: 140px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .story-section:nth-child(4) .floating-image {
+            top: 50px;
+            right: 80px;
+            width: 130px;
+            height: 130px;
+            animation: float 6.5s ease-in-out infinite reverse;
+        }
+
+        .story-section:nth-child(5) .floating-image {
+            top: -30px;
+            left: 40px;
+            width: 160px;
+            height: 160px;
+            animation: float 7.5s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .story-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.3rem;
+            line-height: 2.3;
             color: #333;
-            margin-bottom: 40px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        .content p strong {
-            color: #27abe2;
+        .story-text strong {
+            background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(39, 171, 226, 0.2) 60%, rgba(39, 171, 226, 0.2) 100%);
             font-weight: 700;
+            color: #000;
+            padding: 0 5px;
         }
 
-        .content a {
+        .story-section:nth-child(even) .story-text strong {
+            background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(243, 113, 35, 0.2) 60%, rgba(243, 113, 35, 0.2) 100%);
+        }
+
+        .story-text a {
             color: #f37123;
-            text-decoration: underline;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #f37123;
             transition: all 0.3s ease;
+            padding-bottom: 2px;
         }
 
-        .content a:hover {
+        .story-text a:hover {
             color: #27abe2;
+            border-bottom-color: #27abe2;
+            padding-bottom: 4px;
         }
 
-        .content p:nth-child(even) {
-            background: linear-gradient(to right, rgba(39, 171, 226, 0.05), transparent);
-            padding: 30px;
-            border-radius: 0 50px 50px 0;
+        .highlight-quote {
+            font-size: 2rem;
+            color: #27abe2;
+            font-style: italic;
+            font-weight: 400;
+            margin: 40px 0 40px 60px;
+            padding-left: 40px;
+            border-left: 5px solid #f37123;
+            font-family: 'Georgia', serif;
+            line-height: 1.5;
         }
 
         .assignment-box {
@@ -234,6 +343,26 @@
                 font-size: 3rem;
             }
 
+            .story-section h3 {
+                font-size: 2rem;
+            }
+
+            .floating-image {
+                width: 100px !important;
+                height: 100px !important;
+                opacity: 0.5;
+            }
+
+            .story-text {
+                font-size: 1.15rem;
+            }
+
+            .highlight-quote {
+                font-size: 1.5rem;
+                margin-left: 20px;
+                padding-left: 25px;
+            }
+
             .assignment-box {
                 padding: 40px 30px;
             }
@@ -260,25 +389,61 @@
         </header>
 
         <div class="content">
-            <p>
-                Պատմությունները կարող են լինել <strong>թերապևտիկ</strong>, օգնել հաղթահարել տրավման։ Օրինակ՝ <a href="https://daphnearmenia.com/2019/01/31/hasmikarm/" target="_blank">Daphne նախագիծը</a> պատմում է ընտանեկան բռնության միջով անցած կանանց պատմություններ․ կանայք կիսվում էին իրենց ցավոտ հիշողություններով, նոր իմաստ տալիս կյանքին և գտնում վերականգնվելու ուղիներ։ Այսպիսի պատմությունները նաև լսարանին են օգնում հաղթահարել տրավման և վերագտնել ներքին ուժը։
-            </p>
+            <div class="story-section">
+                <h3>Թերապևտիկ պատմություններ</h3>
+                <div class="text-with-images">
+                    <div class="floating-image">img-1.png</div>
+                    <p class="story-text">
+                        Պատմությունները կարող են լինել <strong>թերապևտիկ</strong>, օգնել հաղթահարել տրավման։ Օրինակ՝ <a href="https://daphnearmenia.com/2019/01/31/hasmikarm/" target="_blank">Daphne նախագիծը</a> պատմում է ընտանեկան բռնության միջով անցած կանանց պատմություններ․ կանայք կիսվում էին իրենց ցավոտ հիշողություններով, նոր իմաստ տալիս կյանքին և գտնում վերականգնվելու ուղիներ։ Այսպիսի պատմությունները նաև լսարանին են օգնում հաղթահարել տրավման և վերագտնել ներքին ուժը։
+                    </p>
+                </div>
+            </div>
 
-            <p>
-                Իսկ #MeToo օնլայն արշավը, որ դարձավ սեռական բռնության դեմ պայքարի գլոբալ շարժումը, ծնվեց հոլիվուդյան դերասանուհիների անհատական պատմություններից։ Երբ նրանք համարձակվեցին բարձրաձայնել իրենց հետ պատահածը, ալիքը շատ արագ տարածվեց ու ցույց տվեց, որ <strong>պատմությունը կարող է դառնալ փոփոխության շարժիչ ուժ</strong>։
-            </p>
+            <div class="story-section">
+                <h3>Սոցիալական շարժումներ</h3>
+                <div class="text-with-images">
+                    <div class="floating-image">img-2.png</div>
+                    <p class="story-text">
+                        Իսկ #MeToo օնլայն արշավը, որ դարձավ սեռական բռնության դեմ պայքարի գլոբալ շարժումը, ծնվեց հոլիվուդյան դերասանուհիների անհատական պատմություններից։
+                    </p>
+                    <div class="highlight-quote">
+                        Պատմությունը կարող է դառնալ փոփոխության շարժիչ ուժ
+                    </div>
+                    <p class="story-text">
+                        Երբ նրանք համարձակվեցին բարձրաձայնել իրենց հետ պատահածը, ալիքը շատ արագ տարածվեց ու ցույց տվեց, որ <strong>պատմությունը կարող է դառնալ փոփոխության շարժիչ ուժ</strong>։
+                    </p>
+                </div>
+            </div>
 
-            <p>
-                Պատմությունները օգնում են <strong>կոտրել կարծրատիպել, փոխել ընկալումներ</strong>։ Երբ «նորմալից» տարբերվող փորձ ունեցող մարդիկ բարձրաձայնում են իրենց կյանքի մասին, լսարանը սովորում է տեսնել աշխարհը նոր դիտանկյունից։ Օրինակ՝ Բրիտանացի Նիկի Լիլին-ն <a href="https://www.instagram.com/nikkililly_/" target="_blank">իր պատմություններով</a> Instagram-ում ցույց է տալիս, որ սահմանափակ հնարավորություններ ունեցող մարդը կարող է լինել ակտիվ, ստեղծագործ և ոգեշնչող։
-            </p>
+            <div class="story-section">
+                <h3>Փոխում են ընկալումները</h3>
+                <div class="text-with-images">
+                    <div class="floating-image">img-3.png</div>
+                    <p class="story-text">
+                        Պատմությունները օգնում են <strong>կոտրել կարծրատիպել, փոխել ընկալումներ</strong>։ Երբ «նորմալից» տարբերվող փորձ ունեցող մարդիկ բարձրաձայնում են իրենց կյանքի մասին, լսարանը սովորում է տեսնել աշխարհը նոր դիտանկյունից։ Օրինակ՝ Բրիտանացի Նիկի Լիլին-ն <a href="https://www.instagram.com/nikkililly_/" target="_blank">իր պատմություններով</a> Instagram-ում ցույց է տալիս, որ սահմանափակ հնարավորություններ ունեցող մարդը կարող է լինել ակտիվ, ստեղծագործ և ոգեշնչող։
+                    </p>
+                </div>
+            </div>
 
-            <p>
-                Մեդիամաքսի «Հայտնիների 10 իրերը» <a href="https://mediamax.am/am/specialprojects/10_items/" target="_blank">մուլտիմեդիա նախագծում</a> պատմությունը պատմում են առարկաները, բայց դրանք հյուսում են օրինակ Ավետիք Իսահակյանի, Հովհաննես Թումանյանի, Մարտիրոս Սարյանի կերպարը, պատմում են նրանք կյանքի, ժամանակաշրջանի ու իրականության մասին, <strong>դառնում են մշակութային ժառանգություն</strong>։
-            </p>
+            <div class="story-section">
+                <h3>Մշակութային ժառանգություն</h3>
+                <div class="text-with-images">
+                    <div class="floating-image">img-4.png</div>
+                    <p class="story-text">
+                        Մեդիամաքսի «Հայտնիների 10 իրերը» <a href="https://mediamax.am/am/specialprojects/10_items/" target="_blank">մուլտիմեդիա նախագծում</a> պատմությունը պատմում են առարկաները, բայց դրանք հյուսում են օրինակ Ավետիք Իսահակյանի, Հովհաննես Թումանյանի, Մարտիրոս Սարյանի կերպարը, պատմում են նրանք կյանքի, ժամանակաշրջանի ու իրականության մասին, <strong>դառնում են մշակութային ժառանգություն</strong>։
+                    </p>
+                </div>
+            </div>
 
-            <p>
-                Պատմությունը ամենալավ գործիքն է <strong>համոզելու համար</strong>։ Իզուր չի, որ լավագույն գովազդը հենց սթորիթելինգ է, որն ունի հերոս ու պատմություն, ինչպես օրինակ այս դասական <a href="https://www.domestika.org/en/blog/10988-10-powerful-examples-of-storytelling-in-advertising" target="_blank">գովազդային հոլովակներում</a>։ Եվ ամենահաջող քաղաքական արշավների հիմքում պատմություններն են, որոնք կառուցվում են հստակ սցենարական հնարքներով, ինչպես վերլուծում է Նյու Յորք Թայմզի «Ինչպես հաղթել» <a href="https://www.youtube.com/watch?v=tly8abRH4ws&t=153s" target="_blank">ֆիլմը</a>։
-            </p>
+            <div class="story-section">
+                <h3>Համոզող պատմություններ</h3>
+                <div class="text-with-images">
+                    <div class="floating-image">img-5.png</div>
+                    <p class="story-text">
+                        Պատմությունը ամենալավ գործիքն է <strong>համոզելու համար</strong>։ Իզուր չի, որ լավագույն գովազդը հենց սթորիթելինգ է, որն ունի հերոս ու պատմություն, ինչպես օրինակ այս դասական <a href="https://www.domestika.org/en/blog/10988-10-powerful-examples-of-storytelling-in-advertising" target="_blank">գովազդային հոլովակներում</a>։ Եվ ամենահաջող քաղաքական արշավների հիմքում պատմություններն են, որոնք կառուցվում են հստակ սցենարական հնարքներով, ինչպես վերլուծում է Նյու Յորք Թայմզի «Ինչպես հաղթել» <a href="https://www.youtube.com/watch?v=tly8abRH4ws&t=153s" target="_blank">ֆիլմը</a>։
+                    </p>
+                </div>
+            </div>
         </div>
 
         <div class="assignment-box">
